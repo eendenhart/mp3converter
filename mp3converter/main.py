@@ -82,16 +82,21 @@ def main(args):
             encode_mp3(i_path, o_path, 192)
 
 
-def test():
+def test(src, dst):
     class dummy:
         pass
 
     args = dummy()
-    args.input = "./downloads"
-    args.output = "./backup"
+    args.input = src
+    args.output = dst
     main(args)
 
 
 if __name__ == "__main__":
-    # test()
-    main(get_args())
+    # test("./downloads", "./backup")
+    src = os.environ.get("MP3CONVERTER_SRC", None)
+    dst = os.environ.get("MP3CONVERTER_DST", None)
+    if src and dst:
+        test(src, dst)
+    else:
+        main(get_args())

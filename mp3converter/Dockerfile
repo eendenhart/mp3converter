@@ -1,13 +1,15 @@
 FROM python:3.9.16-slim
 
-ENV SRC /convert/from
-ENV DST /convert/to
+ENV MP3CONVERTER_SRC /convert/from
+ENV MP3CONVERTER_DST /convert/to
 
 WORKDIR /app
 
 RUN  apt-get update && apt-get install -y 'wget' 'ffmpeg'
 
 # download latest script
-RUN wget -O main.py 'https://raw.githubusercontent.com/rahulsrma26/dockers/master/mp3converter/main.py'
+RUN wget -O /app/main.py 'https://raw.githubusercontent.com/rahulsrma26/dockers/master/mp3converter/main.py'
+# for testing
+# COPY . /app
 
-CMD ["python3", "main.py", "echo ${SRC}", "echo ${DST}"]
+CMD ["python3", "main.py"]
