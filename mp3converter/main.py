@@ -67,6 +67,7 @@ def main(args):
     filter_func = lambda p: os.path.splitext(p.lower())[-1] in exts
     paths = glob(f"{args.input}/**/*.*", recursive=True)
     paths = sorted(list(filter(filter_func, paths)))
+    processed = 0
     for i_path in paths:
         o_path = i_path.replace(args.input, args.output, 1)
         o_path = os.path.splitext(o_path.lower())[0] + ".mp3"
@@ -80,6 +81,9 @@ def main(args):
             print(f"{i_path} >> {o_path}")
         else:
             encode_mp3(i_path, o_path, 192)
+        processed += 1
+    if not processed:
+        print("Everything was up-to-date.")
 
 
 def test(src, dst):
