@@ -1,6 +1,6 @@
 ## Docker hub
 
-You can check the image in docker hub [welcometors/mp3converter](https://hub.docker.com/repository/docker/welcometors/mp3converter)
+You can check the image in docker hub [welcometors/mp3converter](https://hub.docker.com/r/welcometors/mp3converter)
 
 ## Building Image
 
