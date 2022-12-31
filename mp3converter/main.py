@@ -9,7 +9,7 @@ import shutil
 from glob import glob
 
 
-def get_args():
+def get_args(args: list = None):
     parser = argparse.ArgumentParser(
         prog=os.path.basename(__file__),
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -17,7 +17,14 @@ def get_args():
     )
     parser.add_argument("input", type=str, help="input dir")
     parser.add_argument("output", type=str, help="output dir")
-    return parser.parse_args()
+    parser.add_argument(
+        "-e",
+        "--extensions",
+        default=".m4a",
+        type=str,
+        help="Extensions for converting files (separated by ;)",
+    )
+    return parser.parse_args(args) if args else parser.parse_args()
 
 
 def encode_mp3(i_path: str, o_path: str, quality: int):
@@ -63,7 +70,8 @@ def path_tree(root):
 
 
 def main(args):
-    exts = {".mp3", ".m4a"}
+    exts = set(args.extensions.split(";"))
+    exts.add(".mp3")
     filter_func = lambda p: os.path.splitext(p.lower())[-1] in exts
     paths = glob(f"{args.input}/**/*.*", recursive=True)
     paths = sorted(list(filter(filter_func, paths)))
@@ -86,21 +94,14 @@ def main(args):
         print("Everything was up-to-date.")
 
 
-def test(src, dst):
-    class dummy:
-        pass
-
-    args = dummy()
-    args.input = src
-    args.output = dst
-    main(args)
-
-
 if __name__ == "__main__":
-    # test("./downloads", "./backup")
     src = os.environ.get("MP3CONVERTER_SRC", None)
     dst = os.environ.get("MP3CONVERTER_DST", None)
     if src and dst:
-        test(src, dst)
+        args = [src, dst]
+        if ext := os.environ.get("MP3CONVERTER_EXT", None):
+            args.extend(["-e", ext])
+        print(f"{args=}")
+        main(get_args(args))
     else:
         main(get_args())
