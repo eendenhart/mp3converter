@@ -6,10 +6,15 @@ ENV MP3CONVERTER_EXT .m4a
 
 WORKDIR /app
 
-RUN apk add  --no-cache ffmpeg
+RUN apk add --no-cache unzip ffmpeg
 
 # download latest script
-ADD https://raw.githubusercontent.com/rahulsrma26/dockers/master/mp3converter/main.py /app/main.py
+ADD https://github.com/rahulsrma26/dockers/archive/refs/heads/mp3converter.zip /app/
+RUN unzip mp3converter.zip -d /tmp/
+RUN rm mp3converter.zip
+RUN rm mp3converter.zip
+RUN mv /tmp/dockers-mp3converter/* /app
+
 # for local testing
 # COPY . /app
 
