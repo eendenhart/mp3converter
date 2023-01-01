@@ -2,7 +2,7 @@
 
 This docker file uses [ffmpeg](https://ffmpeg.org/) to convert audio files from [supported formats](https://ffmpeg.org/ffmpeg-formats.html) to `mp3`. It runs a simple python [script](main.py) to skip previously converted files.
 
-You can check the image in docker hub [welcometors/mp3converter](https://hub.docker.com/r/welcometors/mp3converter)
+You can check the image in docker hub [welcometors/mp3converter](https://hub.docker.com/r/welcometors/mp3converter/tags)
 
 ## Pull Image
 

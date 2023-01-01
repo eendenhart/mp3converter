@@ -12,7 +12,6 @@ RUN apk add --no-cache unzip ffmpeg
 ADD https://github.com/rahulsrma26/dockers/archive/refs/heads/mp3converter.zip /app/
 RUN unzip mp3converter.zip -d /tmp/
 RUN rm mp3converter.zip
-RUN rm mp3converter.zip
 RUN mv /tmp/dockers-mp3converter/* /app
 
 # for local testing
