@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DATADIR=/data
+REPODIR=~/repo
 COPYSSH="${COPYPUB:-false}"
 
 if [ "$COPYSSH" = false ]; then
@@ -14,13 +15,15 @@ if [ "$COPYSSH" = false ]; then
         while IFS= read -r line; do
             set -- "$@" "$line"
         done < "$TXTFILE"
-        git clone -b "$2" "$1"
+        rm -rf "$REPODIR/"
+        mkdir -p "$REPODIR"
+        cd "$REPODIR" && git clone -b "$2" "$1"
         REPO=$(basename -s .git "$1")
-        unzip -o -d "$REPO/" "$ZIPFILE"
+        unzip -o -d "$REPODIR/$REPO/" "$ZIPFILE"
         git config --global user.email "$USER_EMAIL"
         git config --global user.name "$USER_NAME"
-        cd "$REPO/" && git add . && git commit -m "$3" && git push --set-upstream origin "$2" && rm "$TXTFILE" "$ZIPFILE"
-        rm -rf "$REPO/"
+        cd "$REPODIR/$REPO/" && git add . && git commit -m "$3" && git push --set-upstream origin "$2" && rm "$TXTFILE" "$ZIPFILE"
+        rm -rf "$REPODIR/"
     else
         echo "Error: Corresponding zipfile not found. $ZIPFILE" >&2
     fi
