@@ -103,3 +103,9 @@ To remove old images
 ```sh
 docker image prune -f
 ```
+
+To update the `truecommit.sh` from master branch without rebuilding the docker.
+
+```sh
+docker run -e UPDATE=true gitcommitter
+```
