@@ -1,11 +1,12 @@
 #!/bin/bash
 
-IN_DIR="${IN_DIR:-./tmp/original}"
-OUT_DIR="${OUT_DIR:-./tmp/converted}"
+gpg --trust-model always --import "$IMPORT_DIR/public.pgp"
 
 for f in "$IN_DIR"/* ; do
     if [ -d "$f" ]; then
         name=$(basename "$f")
         zip -r "$OUT_DIR/$name".zip "$f"
+        gpg -e --recipient "$EMAIL" --yes --trust-model always "$OUT_DIR/$name".zip
+        rm "$OUT_DIR/$name".zip
     fi
 done
