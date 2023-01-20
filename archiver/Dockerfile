@@ -2,7 +2,7 @@ FROM python:3.9.16-alpine
 
 ENV IN_DIR /convert/from
 ENV OUT_DIR /convert/to
-ENV IMPORT_DIR /import/gpg
+ENV IMPORT_FILE /import/public.pgp
 ENV EMAIL test@abc.com
 
 WORKDIR /app

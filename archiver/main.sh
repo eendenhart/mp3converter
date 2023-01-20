@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gpg --trust-model always --import "$IMPORT_DIR/public.pgp"
+gpg --trust-model always --import "$IMPORT_FILE"
 
 for f in "$IN_DIR"/* ; do
     if [ -d "$f" ]; then
