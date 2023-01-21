@@ -1,4 +1,4 @@
-FROM python:3.9.16-alpine
+FROM alpine:latest
 
 ENV IN_DIR /convert/from
 ENV OUT_DIR /convert/to
