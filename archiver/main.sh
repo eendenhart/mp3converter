@@ -1,6 +1,17 @@
 #!/bin/bash
 
-gpg --trust-model always --import "$IMPORT_FILE"
+IMPORTKEY="${IMPORT:-false}"
+UPDATESOURCE="${UPDATE:-false}"
+
+if [ "$UPDATESOURCE" = true ]; then
+    wget -O main.sh https://raw.githubusercontent.com/rahulsrma26/dockers/master/archiver/main.sh
+fi
+
+if [ "$IMPORTKEY" = true ]; then
+    gpg --trust-model always --import "$IMPORT_FILE"
+fi
+
+rm -rf /tmp/*
 
 for f in "$IN_DIR"/* ; do
     if [ -d "$f" ]; then
@@ -16,10 +27,12 @@ for f in "$IN_DIR"/* ; do
             fi
         fi
         if [ "$rebuild" = true ]; then
-            zip -r -q "$OUT_DIR/$name".zip "$f"
+            zip -r -q "/tmp/$name.zip" "$f"
             echo "Encrypting $name"
-            gpg -e --recipient "$EMAIL" --yes --trust-model always "$OUT_DIR/$name".zip
-            rm "$OUT_DIR/$name".zip
+            gpg -e --recipient "$EMAIL" --yes --trust-model always -o "$OUT_DIR/$name.zip.gpg" "/tmp/$name.zip"
+            rm "/tmp/$name.zip"
         fi
     fi
 done
+
+rm -rf /tmp/*
