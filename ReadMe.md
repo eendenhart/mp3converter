@@ -1,5 +1,9 @@
 A collection of dockers
 
+- [Archiver](archiver/)
+
+  Archive and encrypt directories using `gpg`.
+
 - [Mp3 Converter](mp3converter/)
 
   Convert audio files to mp3.
