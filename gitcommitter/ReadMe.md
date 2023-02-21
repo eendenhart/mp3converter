@@ -13,7 +13,7 @@ Pre-requisite:
 To download and install the `fakecommit` command either copy it from the file [fakecommit.sh](fakecommit.sh) into your bin `PATH` or run this command to do the same:
 
 ```sh
-mkdir -p ~/bin && curl -s "https://raw.githubusercontent.com/rahulsrma26/dockers/gitcommitter/fakecommit.sh" > ~/bin/fakecommit && chmod ugo+x ~/bin/fakecommit
+mkdir -p ~/bin && curl -s "https://raw.githubusercontent.com/rahulsrma26/dockers/master/gitcommitter/fakecommit.sh" > ~/bin/fakecommit && chmod ugo+x ~/bin/fakecommit
 ```
 
 Usually `~/.bin` path will be added by default in most of the distros. You just need to re-login. But if in case it's not present then you can append these line to your `~/.profile` file and then re-login.
