@@ -2,14 +2,6 @@
 
 A simple in-memory `key-value` server.
 
-* `POST` /v1/{source}
-
-    Store or update key,value pairs for the source
-
-* `GET` /v1/{source}
-
-    Retrieve report for the given source
-
 You can check the image in docker hub [welcometors/key_value_server](https://hub.docker.com/r/welcometors/key_value_server/tags)
 
 ## Pull Image
