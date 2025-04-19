@@ -1,17 +1,15 @@
-# A collection of dockers
+# Mp3 Converter
 
-- [Archiver](archiver/)
+Convert audio files to MP3.
 
-  Archive and encrypt directories using `gpg`.
+New Features:
 
-- [Mp3 Converter](mp3converter/)
+Skip conversion if the MP3 file already exists.
 
-  Convert audio files to mp3.
+Do not copy existing MP3 files.
 
-- [Git Committer](gitcommitter/)
+Remove the original file after successful conversion.
 
-  Create staged commits as archives to commit and push them later using automation.
+Keep extension filtering via environment variables.
 
-- [Key-Value Server](key_value_server/)
-
-  A simple in-memory `key-value` server.
+Stay in the original directory after conversion.
